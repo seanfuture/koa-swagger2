@@ -1,30 +1,22 @@
 'use strict';
 
-var restify = require('restify'),
+var koa = require('koa'),
+    router = require('koa-route'),
+    views = require('koa-render'),
+    serve = require('koa-static')
     swagger = require('../../index'),
     api = require('./api');
 
-var port = process.env.NODE_PORT || 8080;
+var app = koa();
+var port = process.env.NODE_PORT || 3000;
 
-var server = restify.createServer({
-    name: 'configRest'
-});
+app.use(views('views', { default: 'jade' }));
 
-server.pre(restify.pre.userAgentConnection());
-server.use(restify.queryParser({ mapParams: false }));
-
-restify.defaultResponseHeaders = function(data) {
-    this.header('Access-Control-Allow-Origin', '*');
-};
-
-server.get(/^\/login(Yml|Js|Coffee)/, api.login);
-server.get(/^\/hello(Yml|Js|Coffee)/, api.hello);
-
-swagger.init(server, {
+app.use(swagger.init({
     swagger: '2.0', // or swaggerVersion as backward compatible
     info: {
         version: '1.0',
-        title: 'Swagger 2.0 Restify example'
+        title: 'Swagger 2.0 Koa example'
     },
     tags: [
         {
@@ -43,11 +35,21 @@ swagger.init(server, {
         'text/xml'
     ],
 
-    // swagger-restify proprietary
+    // koa-swagger2 proprietary
     swaggerURL: '/swagger',
     swaggerJSON: '/api-docs.json',
-    swaggerUI: './public'
-});
+    swaggerUI: './public/swagger/'
+}));
 
-server.listen(port);
-console.log('server is ready on port', port);
+app.use(serve(path.join(__dirname, 'public')));
+
+app.use(router.get('/', function *() {
+  this.body = yield this.render('index', { title: 'Koa' });
+}));
+
+app.use(router.post('/login', api.login));
+app.use(router.get('/hello', api.hello));
+
+app.listen(port, function() {
+  console.log('Server running on port ' + port);
+});

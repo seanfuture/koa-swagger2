@@ -27,7 +27,7 @@
  *     - example
  *   description: Returns a user based on username
  *   operationId: loginJs
- *   consumes: 
+ *   consumes:
  *     - text/html
  *   responses:
  *     200:
@@ -35,12 +35,14 @@
  *       schema:
  *         '$ref': '#/definitions/User'
  */
-exports.login = function (req, res, next) {
-  var user = {};
-  user.username = req.query.username;
-  user.password = req.query.password;
-  res.send(200, user);
-  next();
+exports.login = function *() {
+  var user = {}
+    , query = this.request.query;
+
+  user.username = query.username;
+  user.password = query.password;
+
+  this.body = user;
 };
 
 /**
@@ -54,7 +56,7 @@ exports.login = function (req, res, next) {
  *     - example
  *   description: 'Return "Hello #{ name }!" string'
  *   operationId: helloJs
- *   consumes: 
+ *   consumes:
  *     - text/html
  *   parameters:
  *     - name: name
@@ -68,10 +70,8 @@ exports.login = function (req, res, next) {
  *       schema:
  *         type: string
 */
-exports.hello = function (req, res, next) {
-  var name = req.query.name || 'unknown';
-  res.send(200, "Hello " + name + "!");
-  next();
+exports.hello = function *() {
+  this.body = "Hello " + this.request.query.name + "!";
 };
 
 /**
@@ -85,5 +85,5 @@ exports.hello = function (req, res, next) {
  *       username:
  *         type: string
  *       password:
- *         type: string    
+ *         type: string
  */

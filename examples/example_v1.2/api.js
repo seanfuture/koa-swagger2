@@ -14,7 +14,7 @@
  *      notes: Returns a user based on username
  *      type: User
  *      nickname: login
- *      consumes: 
+ *      consumes:
  *        - text/html
  *      parameters:
  *        - name: username
@@ -28,12 +28,14 @@
  *          required: true
  *          type: string
  */
-exports.login = function (req, res, next) {
-  var user = {};
-  user.username = req.query.username;
-  user.password = req.query.password;
-  res.send(200, user);
-  next();
+exports.login = function *() {
+  var user = {}
+    , query = this.request.query;
+
+  user.username = query.username;
+  user.password = query.password;
+
+  this.body = user;
 };
 
 /**
@@ -45,5 +47,5 @@ exports.login = function (req, res, next) {
  *       username:
  *         type: String
  *       password:
- *         type: String    
+ *         type: String
  */

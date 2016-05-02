@@ -1,14 +1,12 @@
-{swagger-restify}
+{koa-swagger2}
 =========
-This project is a fork of [swagger-restify](https://github.com/yourdelivery/swagger-restify)
-project with Swagger compatibility improvements to make it possible to use it with
-[restify](http://mcavage.me/node-restify/) framework. This implementation also makes use of [swagger-tools](https://github.com/apigee-127/swagger-tools) to validate generated swagger specs.
+This project is a fork of the [swagger-restify](https://github.com/yourdelivery/swagger-restify) project making it possible to use generate specifications and use Swagger ( 1.0, 1.2 and 2.0 ) with [koa](http://koajs.com/). Also makes use of [swagger-tools](https://github.com/apigee-127/swagger-tools) to validate generated swagger specs.
 
 [Swagger](http://swagger.io/) is a specification and complete framework
 implementation for describing, producing, consuming, and visualizing RESTful web services.
 View [demo](http://petstore.swagger.io/).
 
-__{swagger-restify}__ is a simple and clean solution to integrate swagger with restify.
+__{koa-swagger2}__ is a simple and clean solution to integrate swagger with koa.
 
 ### Supported Swagger versions
   - __1.0__
@@ -17,7 +15,7 @@ __{swagger-restify}__ is a simple and clean solution to integrate swagger with r
 
 ## Installation
 
-    $ npm install vellotis/swagger-restify
+    $ npm install seanfuture/koa-swagger2
 
 ## Quick Start Swagger
 -  __[Quick Start Swagger v1.0 or v1.2](#quick-start-swagger-v1.X)__
@@ -26,8 +24,7 @@ __{swagger-restify}__ is a simple and clean solution to integrate swagger with r
 <a id="quick-start-swagger-v1.X"></a>
 ## Quick Start Swagger v1.0 or v1.2
 
-Configure {swagger-restify}.
-
+Configure {koa-swagger2}.
 
 `apiVersion`      -> Your api version.
 
@@ -48,7 +45,7 @@ Configure {swagger-restify}.
 `middleware`      -> Function before response.
 
 ```js
-var swagger = require('swagger-restify');
+var swagger = require('koa-swagger2');
 
   ...
   swagger.init(server, {
@@ -56,13 +53,13 @@ var swagger = require('swagger-restify');
     swaggerVersion: '1.0', // or '1.2'
     basePath: 'http://localhost:8080',
     info: {
-      title: 'swagger-restify sample app',
-      description: 'Swagger + Restify = {swagger-restify}'
+      title: 'koa-swagger2 sample app',
+      description: 'Swagger + Koa = {koa-swagger2}'
     },
     apis: ['./api.js', './api.yml'],
     middleware: function(req, res){},
     
-    // swagger-restify specific configuration
+    // koa-swagger2 specific configuration
     swaggerURL: '/swagger',
     swaggerJSON: '/api-docs.json',
     swaggerUI: './public'
@@ -225,7 +222,7 @@ Example 'api.coffee'
 <a id="quick-start-swagger-v2.0"></a>
 ## Quick Start Swagger v2.0
 
-Configure {swagger-restify}. All properties are as defined in [Swagger v2.0 Spec][user-content-swagger-object].
+Configure {koa-swagger2}. All properties are as defined in [Swagger v2.0 Spec][user-content-swagger-object].
 
 `swagger`  -> Swagger version.
 
@@ -274,14 +271,14 @@ Configure {swagger-restify}. All properties are as defined in [Swagger v2.0 Spec
 `middleware`      -> Function that will be called before before Swagger serving. Can be a passport authentication.
 
 ```js
-var swagger = require('swagger-restify');
+var swagger = require('koa-swagger2');
 
   ...
   swagger.init(server, {
       swagger: '2.0', // or swaggerVersion as backward compatible
       info: {
           version: '1.0',
-          title: 'Swagger 2.0 Restify example'
+          title: 'Swagger 2.0 Koa example'
       },
       tags: [
           {
@@ -300,7 +297,7 @@ var swagger = require('swagger-restify');
           'text/xml'
       ],
   
-      // swagger-restify proprietary
+      // koa-swagger2 proprietary
       swaggerURL: '/swagger',
       swaggerJSON: '/api-docs.json',
       swaggerUI: './public'
@@ -576,8 +573,8 @@ Example 'api.coffee'
 
 Clone the {swagger-express} repo, then install the dev dependencies:
 
-    $ git clone git://github.com/vellotis/swagger-restify.git --depth 1
-    $ cd swagger-restify
+    $ git clone git://github.com/vellotis/koa-swagger2.git --depth 1
+    $ cd koa-swagger2
     $ npm install
 
 and run the example, where {version} is one of '1.0', '1.2', or '2.0':
@@ -591,7 +588,7 @@ and run the example, where {version} is one of '1.0', '1.2', or '2.0':
 - [swagger-express](https://github.com/fliptoo/swagger-express)
 - [swagger-restify](https://github.com/yourdelivery/swagger-restify)
 - [swagger-tools](https://github.com/apigee-127/swagger-tools)
-- [Restify](http://mcavage.me/node-restify/)
+- [Koa](http://koajs.com/)
 - [Express](https://github.com/visionmedia/express)
 - [swagger-jack](https://github.com/feugy/swagger-jack)
 
@@ -599,7 +596,7 @@ and run the example, where {version} is one of '1.0', '1.2', or '2.0':
 
 (The MIT License)
 
-Copyright (c) 2013 Fliptoo &lt;fliptoo.studio@gmail.com&gt;
+Copyright (c) 2016 Sean Future &lt;inbox@seanfuture.com&gt;
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the

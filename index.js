@@ -1,1 +1,1 @@
-module.exports = require('./lib/swagger-restify');
+module.exports = require('./lib/koa-swagger2');
