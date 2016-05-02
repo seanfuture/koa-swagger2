@@ -2,7 +2,7 @@
   "name": "koa-swagger2",
   "main": "index.js",
   "version": "1.1.1",
-  "homepage": "https://github.com/vellotis/koa-swagger2",
+  "homepage": "https://github.com/seanfuture/koa-swagger2",
   "authors": [
     "Sean Future <inbox@seanfuture.com>"
   ],
