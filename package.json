@@ -21,7 +21,7 @@
   },
   "scripts": {
     "test": "jshint --config jshint.cfg $(find . -name *.js | grep -v './node_modules')",
-    "postinstall": "bower install --allow-root"
+    "postinstall": "bower install"
   },
   "keywords": [
     "swagger",
@@ -34,5 +34,6 @@
     "coffee-script",
     "restful"
   ],
-  "repository": "git://github.com/seanfuture/koa-swagger2"
+  "repository": "git://github.com/seanfuture/koa-swagger2",
+  "license": "MIT"
 }
